@@ -33,4 +33,4 @@ left join filmtype
 on filmtype.typeid=filminfo.typeid  
 where ticketprice between 10 and 15
 
-//不不不不不不不不
+//你好吧
