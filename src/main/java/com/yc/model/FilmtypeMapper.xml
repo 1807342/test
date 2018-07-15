@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.model.FilmtypeMapper" >
+
+	<!--批量插入电影的类型 -->
+	<insert id="insertSome" parameterType="Filmtype">
+		insert into filmtype(typename) values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.typename})
+		</foreach>
+	</insert>
+	
+	<!--根据类型名查出类型的编号  -->
+	<select id="selectBytypename" parameterType="String" resultType="Filmtype">
+		select * from filmtype where typename = #{typename}
+	</select>
+	
+	<!--  查询所有的类型  -->
+	<select id="selectAll"  resultType="Filmtype">
+		select * from filmtype where 1=1
+	</select>
+	
+	<!--  通用查询-->
+	<select id="selectBytype"  resultType="Filmtype">
+		select * from filmtype 
+		<where>
+			<if test="typename != null and typename!=null">
+				typename = #{typename}
+			</if>
+		</where>
+	</select>
+</mapper>
